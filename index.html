@@ -1,4 +1,6 @@
 <title>L'IA dans les fonctions de l'entreprise : Le Slip Français</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -532,6 +534,20 @@ body.proj .nav{left:0!important}
 #side .sfoot{display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--line);padding-top:10px}
 #side .sfoot .btn{font-size:.85em;padding:6px 10px}
 @media (min-width:1100px){body.side input[type=text],body.side textarea,body.side select{font-size:clamp(15px,1.08vw,24px)}}
+/* Téléphone : barre de navigation compacte, schémas à faire glisser */
+@media (max-width:700px){
+  #bProj,#bProg,#bJournal,#bSave,#bToc,#chn{display:none!important}
+  #bPrev,#bNext{display:inline-block!important;font-size:0;padding:4px 12px}
+  #bPrev::before{content:"‹";font-size:26px;line-height:1}
+  #bNext::before{content:"›";font-size:26px;line-height:1}
+  .nav{gap:6px}
+  .nav .cnt{font-size:12px;max-width:52vw}
+  .dwrap svg{min-width:520px}
+  .dwrap::after,.wf::after{content:"Faites glisser le schéma →";position:sticky;left:0;display:block;font-size:12px;color:var(--ink3);padding:4px 0 0}
+  .exh .exr{width:100%}
+  .labbar button:not(.cur) .t{display:none}
+  .roles{font-size:.85em}
+}
 
 </style>
 <div id="deck">
