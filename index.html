@@ -471,6 +471,67 @@ body.proj .roles .rbtn,body.proj .roles .rmsg{display:none}
 details.lib summary{cursor:pointer;font-size:.9em;color:var(--accent)}
 #lib-list{margin:8px 0 0;padding-left:1.2em;font-size:.82em;display:flex;flex-direction:column;gap:8px;max-height:40vh;overflow:auto}
 #lib-list p{white-space:pre-wrap;color:var(--ink2);max-width:none}
+/* Menu latéral du parcours */
+:root{--sw:clamp(270px,21vw,340px)}
+#side{position:fixed;top:0;left:0;bottom:0;width:var(--sw);background:#fff;border-right:1px solid var(--line);z-index:8;display:flex;flex-direction:column;gap:10px;padding:18px 14px 12px 18px;transform:translateX(-102%);transition:transform .25s ease;font-size:clamp(13px,.95vw,16px);color:var(--ink)}
+body.side #side{transform:none}
+#side .sh{display:flex;justify-content:space-between;align-items:center}
+#side .sh .lnk{font-size:.9em;color:var(--accent)}
+#sideQ{font-size:.95em;padding:7px 10px}
+.stree{overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:6px;padding-right:4px}
+.sse{border-top:1px solid var(--line);padding-top:6px}
+.sse>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0}
+.sse>summary::-webkit-details-marker,.ssec>summary::-webkit-details-marker{display:none}
+.sse .st{display:flex;flex-direction:column;line-height:1.25}
+.sse .st small{color:var(--ink3);font-size:.82em}
+.sse .pc{font-weight:600;color:var(--accent);font-size:.9em;font-variant-numeric:tabular-nums}
+.sbar{display:block;height:4px;background:var(--tint);border-radius:2px;margin:2px 0 6px;overflow:hidden}
+.sbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.ssec{margin-left:2px}
+.ssec>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:8px;padding:5px 0;font-weight:600;font-size:.92em}
+.ssec>summary::before{content:"";flex:none;width:6px;height:6px;margin:.45em 2px 0 0;border-right:1.6px solid var(--ink3);border-bottom:1.6px solid var(--ink3);transform:rotate(-45deg);transition:transform .2s}
+.ssec[open]>summary::before{transform:rotate(45deg)}
+.ssec>summary>span:first-child{flex:1}
+.ssec .cnt2{color:var(--ink3);font-weight:400;font-variant-numeric:tabular-nums;font-size:.9em}
+.ssec ol{list-style:none;margin:0 0 6px;padding:0 0 0 12px}
+.ssec li button{display:flex;gap:8px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;padding:4px 6px;border-radius:6px;font:inherit;font-size:.88em;color:var(--ink2);cursor:pointer;line-height:1.3}
+.ssec li button:hover{background:var(--tint);color:var(--ink)}
+.ssec li.cur button{background:var(--tint);color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 var(--accent)}
+.ssec li .ic{flex:none;width:11px;height:11px;margin-top:.3em;border:1.6px solid var(--line);border-radius:50%}
+.ssec li.act .ic{border-radius:3px;border-color:var(--ink3)}
+.ssec li.done .ic{background:var(--accent);border-color:var(--accent)}
+.ssec li.th.done .ic{background:#C9D6EC;border-color:#C9D6EC}
+.ssec li[hidden]{display:none}
+#sideBd{display:none}
+.sidebtn{display:inline-flex;align-items:center;gap:6px}
+.sidebtn[aria-expanded=true]{color:var(--accent)}
+@media (min-width:1100px){
+  body.side #deck{margin-left:var(--sw)}
+  body.side .nav{left:var(--sw)}
+  body.side .in{padding-left:max(16px,4vw);padding-right:max(16px,4vw)}
+  body.side .nav{padding-left:max(16px,4vw);padding-right:max(16px,4vw)}
+}
+@media (max-width:1099px){
+  #side{width:min(88vw,360px);box-shadow:0 0 0 100vmax rgba(0,0,0,0);z-index:12}
+  body.side #sideBd{display:block;position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:11}
+}
+body.proj #side,body.proj #sideBd{display:none}
+body.proj #deck{margin-left:0!important}
+body.proj .nav{left:0!important}
+@media (prefers-reduced-motion:reduce){#side{transition:none}}
+@media (min-width:1100px){
+  body.side{font-size:clamp(16px,1.24vw,21px)}
+  body.side h2{font-size:clamp(24px,2.6vw,40px)}
+  body.side .opener h1,body.side .closing h1{font-size:clamp(34px,5.2vw,80px)}
+  body.side .cover h1{font-size:clamp(30px,4.4vw,64px)}
+  body.side #bProg,body.side #bJournal,body.side #bSave{display:none}
+}
+.nav .l{flex-wrap:nowrap;min-width:0;overflow:hidden}
+.nav .cnt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav .r .lnk{white-space:nowrap}
+#side .sfoot{display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+#side .sfoot .btn{font-size:.85em;padding:6px 10px}
+@media (min-width:1100px){body.side input[type=text],body.side textarea,body.side select{font-size:clamp(15px,1.08vw,24px)}}
 
 </style>
 <div id="deck">
@@ -1427,23 +1488,23 @@ Proposer une version corrigée."></textarea></div><p class="msg" id="skm-V6"></p
   </div>
 </section>
 
-<section class="slide dark opener" data-title="Séance 2" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Ouverture de la séance 2" class="slide dark opener" data-title="Séance 2" data-ch="Séance 2 · RH et juridique">
   <div class="in"><h1>Séance 2 : les RH et le juridique du Slip Français</h1></div>
 </section>
 
-<section class="slide" data-title="Séance 2 : le déroulé" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Ouverture de la séance 2" class="slide" data-title="Séance 2 : le déroulé" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Séance 2 : le déroulé de trois heures</h2><div class="rows"><div class="row"><span class="k">0&nbsp;h&nbsp;00 – 0&nbsp;h&nbsp;40</span><span>Finir la V1 marketing : exercices 9 à 12 et fil itéré.</span></div><div class="row"><span class="k">0&nbsp;h&nbsp;40 – 1&nbsp;h&nbsp;05</span><span>Marketing V2 : corriger le projet, créer le Skill 2.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;05 – 1&nbsp;h&nbsp;45</span><span>Apports : l&#x27;IA dans les RH, le cadre juridique, l&#x27;influence commerciale.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;45 – 1&nbsp;h&nbsp;55</span><span>Pause.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;55 – 2&nbsp;h&nbsp;45</span><span>Atelier : publication conforme, Skill 3, projet RH V1, offre d’emploi.</span></div><div class="row"><span class="k">2&nbsp;h&nbsp;45 – 3&nbsp;h&nbsp;00</span><span>Journal de bord et progression.</span></div></div><p class="small">Vous changez d&#x27;appareil ? Importez d&#x27;abord votre sauvegarde .json.</p>
   </div>
 </section>
 
-<section class="slide" data-title="Finir la V1 marketing" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Finir la V1 marketing" class="slide" data-title="Finir la V1 marketing" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Finir la V1 du projet marketing</h2><div class="rows"><div class="row n"><span class="num">1</span><span>Exercice 9 : produisez la fiche produit.</span></div><div class="row n"><span class="num">2</span><span>Fil itéré : améliorez-la en quatre tours.</span></div><div class="row n"><span class="num">3</span><span>Exercices 10 et 11 : répondez à Camille, évaluez vos deux contenus.</span></div><div class="row n"><span class="num">4</span><span>Exercice 12 : rangez la procédure dans votre premier Skill.</span></div></div><p class="small">Votre évaluation de l&#x27;exercice 11 servira à construire la V2.</p>
   </div>
 </section>
 
-<section class="slide" data-title="Exercice 9 · La fiche produit" data-ch="Séance 2 · RH et juridique" data-ex="9" data-min="10">
+<section data-sec="Finir la V1 marketing" class="slide" data-title="Exercice 9 · La fiche produit" data-ch="Séance 2 · RH et juridique" data-ex="9" data-min="10">
   <div class="in">
     <header class="exh"><div><p class="kick">Exercice 9 sur 12</p><h2>Produire la fiche produit</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols">
@@ -1465,14 +1526,14 @@ Proposer une version corrigée."></textarea></div><p class="msg" id="skm-V6"></p
   </div>
 </section>
 
-<section class="slide" data-title="F1 · Fil itéré · la fiche produit" data-ch="Séance 2 · RH et juridique" data-ex="F1" data-min="15" data-s="2">
+<section data-sec="Finir la V1 marketing" class="slide" data-title="F1 · Fil itéré · la fiche produit" data-ch="Séance 2 · RH et juridique" data-ex="F1" data-min="15" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité F1 · 15 points</p><h2>Fil itéré : la fiche produit en quatre tours</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez une nouvelle conversation dans votre projet marketing.</p><p>Envoyez les consignes une par une, dans le même fil. Notez à chaque tour ce que vous observez.</p><p class="small"><b>Livrable</b> : un fil de quatre tours et vos observations.</p></div><div class="exf"><div class="iter" data-iter="F1"><div class="itabs" role="group" aria-label="Tours du fil"><button type="button" data-i="0" aria-pressed="true">Tour 1 · Premier jet</button><button type="button" data-i="1" aria-pressed="false">Tour 2 · Comparer</button><button type="button" data-i="2" aria-pressed="false">Tour 3 · Varier le ton</button><button type="button" data-i="3" aria-pressed="false">Tour 4 · Finaliser</button></div><div class="istep" data-i="0"><span class="lab">Consigne du tour 1</span><pre class="doc">Rédige la fiche produit du boxer en coton du Slip Français. Faits vérifiés : [collez vos faits de l&#x27;exercice 9]. Respecte les instructions du projet.</pre><div class="actions"><button class="btn" type="button" data-icopy="F1:0">Copier la consigne</button></div><div class="fld"><label for="f-it_F1_o0">Ce que vous observez</label><textarea data-k="it_F1_o0" rows="2" placeholder="La fiche respecte-t-elle le format du bloc 4 ?"></textarea></div></div><div class="istep" data-i="1" hidden><span class="lab">Consigne du tour 2</span><pre class="doc">Compare ta fiche aux exemples validés du projet. Quels passages sonnent moins comme la marque ? Réécris seulement ces passages.</pre><div class="actions"><button class="btn" type="button" data-icopy="F1:1">Copier la consigne</button></div><div class="fld"><label for="f-it_F1_o1">Ce que vous observez</label><textarea data-k="it_F1_o1" rows="2" placeholder="Les passages réécrits sont-ils meilleurs ? Pourquoi ?"></textarea></div></div><div class="istep" data-i="2" hidden><span class="lab">Consigne du tour 3</span><pre class="doc">Propose deux accroches : une plus drôle, une plus sobre. Explique en une phrase la différence de ton.</pre><div class="actions"><button class="btn" type="button" data-icopy="F1:2">Copier la consigne</button></div><div class="fld"><label for="f-it_F1_o2">Ce que vous observez</label><textarea data-k="it_F1_o2" rows="2" placeholder="Laquelle colle le mieux à la voix de la marque ?"></textarea></div></div><div class="istep" data-i="3" hidden><span class="lab">Consigne du tour 4</span><pre class="doc">Donne la version finale de la fiche, puis la liste des faits à vérifier avant publication.</pre><div class="actions"><button class="btn" type="button" data-icopy="F1:3">Copier la consigne</button></div><div class="fld"><label for="f-it_F1_o3">Ce que vous observez</label><textarea data-k="it_F1_o3" rows="2" placeholder="La liste des faits à vérifier est-elle complète ?"></textarea></div></div></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_F1_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_F1_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_F1_avis">Mon avis sur le résultat</label><textarea data-k="rf_F1_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_F1_amelio">Une amélioration possible</label><textarea data-k="rf_F1_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-F1"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Exercice 10 · La réponse client" data-ch="Séance 2 · RH et juridique" data-ex="10" data-min="8">
+<section data-sec="Finir la V1 marketing" class="slide" data-title="Exercice 10 · La réponse client" data-ch="Séance 2 · RH et juridique" data-ex="10" data-min="8">
   <div class="in">
     <header class="exh"><div><p class="kick">Exercice 10 sur 12</p><h2>Répondre à une cliente</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols">
@@ -1494,7 +1555,7 @@ Proposer une version corrigée."></textarea></div><p class="msg" id="skm-V6"></p
   </div>
 </section>
 
-<section class="slide" data-title="Exercice 11 · L'évaluation" data-ch="Séance 2 · RH et juridique" data-ex="11" data-min="10">
+<section data-sec="Finir la V1 marketing" class="slide" data-title="Exercice 11 · L'évaluation" data-ch="Séance 2 · RH et juridique" data-ex="11" data-min="10">
   <div class="in">
     <header class="exh"><div><p class="kick">Exercice 11 sur 12</p><h2>Évaluer et corriger</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols">
@@ -1509,7 +1570,7 @@ Proposer une version corrigée."></textarea></div><p class="msg" id="skm-V6"></p
   </div>
 </section>
 
-<section class="slide" data-title="Exercice 12 · Le Skill de la marque" data-ch="Séance 2 · RH et juridique" data-ex="12" data-min="12">
+<section data-sec="Finir la V1 marketing" class="slide" data-title="Exercice 12 · Le Skill de la marque" data-ch="Séance 2 · RH et juridique" data-ex="12" data-min="12">
   <div class="in">
     <header class="exh"><div><p class="kick">Exercice 12 sur 12</p><h2>Transformer la procédure en Skill</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols">
@@ -1531,20 +1592,20 @@ Proposer une version corrigée."></textarea></div><p class="msg" id="skm-V6"></p
   </div>
 </section>
 
-<section class="slide" data-title="Passer à la V2 marketing" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Marketing V2" class="slide" data-title="Passer à la V2 marketing" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Passer à la V2 du projet marketing</h2><p class="lead">La V2 ne repart pas de zéro : elle corrige ce que la V1 a révélé.</p><div class="cols"><div class="col"><span class="no">Partir de</span><h3>Vos preuves</h3><p class="muted">L&#x27;évaluation de l&#x27;exercice 11, l&#x27;évaluation croisée, votre journal.</p></div><div class="col cur"><span class="no">Corriger</span><h3>Les instructions</h3><p class="muted">Une règle par défaut repéré, puis un test avec la même demande.</p></div><div class="col"><span class="no">Ajouter</span><h3>Le Skill 2</h3><p class="muted">La réponse aux e-mails clients, prête à servir partout.</p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.1 · Marketing V2 : corriger le projet" data-ch="Séance 2 · RH et juridique" data-ex="2.1" data-min="15" data-s="2">
+<section data-sec="Marketing V2" class="slide" data-title="2.1 · Marketing V2 : corriger le projet" data-ch="Séance 2 · RH et juridique" data-ex="2.1" data-min="15" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.1 · 10 points</p><h2>Marketing V2 : corriger le projet</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Relisez votre évaluation (exercice 11) et votre journal.</p><p>Corrigez les instructions du projet dans Claude. Refaites ensuite la même demande qu&#x27;en V1.</p><p class="small"><b>Livrable</b> : trois défauts, leurs corrections et la preuve du progrès.</p></div><div class="exf"><div class="fld"><label for="f-m2_defauts">Trois défauts relevés en V1</label><textarea data-k="m2_defauts" rows="3" placeholder="Un défaut par ligne"></textarea></div><div class="fld"><label for="f-m2_corr">Les corrections apportées aux instructions</label><textarea data-k="m2_corr" rows="3" placeholder="Ce que vous avez ajouté, retiré ou reformulé"></textarea></div><div class="fld"><label for="f-m2_test">Le test de la V2 : même demande, nouveau résultat</label><textarea data-k="m2_test" rows="3" placeholder="Collez un extrait et dites ce qui a changé"></textarea></div><div class="fld"><label for="f-m2_note">Nouvelle note sur 10 avec la grille</label><select data-k="m2_note"><option value="">Choisir…</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_2_1_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_2_1_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_2_1_avis">Mon avis sur le résultat</label><textarea data-k="rf_2_1_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_2_1_amelio">Une amélioration possible</label><textarea data-k="rf_2_1_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-2_1"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.2 · Skill 2 · réponse aux e-mails clients" data-ch="Séance 2 · RH et juridique" data-ex="2.2" data-min="12" data-s="2">
+<section data-sec="Marketing V2" class="slide" data-title="2.2 · Skill 2 · réponse aux e-mails clients" data-ch="Séance 2 · RH et juridique" data-ex="2.2" data-min="12" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.2 · 20 points</p><h2>Skill 2 : répondre aux e-mails clients</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Complétez le nom, la description et les étapes.</p><p>Copiez le fichier Skill.md, installez le Skill, puis testez-le dans une nouvelle conversation.</p><p class="small"><b>Livrable</b> : le fichier Skill.md et le résultat du test.</p><span class="lab">Fichier Skill.md assemblé</span><pre class="doc skp" id="skp-2_2" style="max-height:20vh"></pre></div><div class="exf"><div class="fld"><label for="f-s2_nom">Nom du Skill</label><input type="text" data-k="s2_nom" placeholder="lsf-reponse-email-client"></div><div class="fld"><label for="f-s2_desc">Description : à quoi sert-il, quand l'utiliser ?</label><textarea data-k="s2_desc" rows="2" placeholder="Répond aux e-mails des clients du Slip Français dans la voix de la marque. À utiliser pour toute réponse à un message client."></textarea></div><div class="fld"><label for="f-s2_etapes">Étapes, une par ligne</label><textarea data-k="s2_etapes" rows="3" placeholder="Identifier la demande : question, réclamation ou remerciement.
@@ -1554,32 +1615,32 @@ Ne promettre aucun remboursement sans validation humaine."></textarea></div><p c
   </div>
 </section>
 
-<section class="slide" data-title="Où l&#x27;IA intervient dans les RH" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Apports : RH et juridique" class="slide" data-title="Où l&#x27;IA intervient dans les RH" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Où l&#x27;IA intervient dans les RH du Slip Français</h2><p class="small">Choisissez un domaine. L&#x27;IA propose, l&#x27;humain décide.</p><div class="gtabs" data-tabs="[[&quot;Recrutement&quot;, &quot;&lt;p&gt;Rédiger les offres, reformuler les fiches de poste, préparer des trames d&#x27;entretien.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Choisir les candidats, conduire les entretiens, décider.&lt;/p&gt;&quot;], [&quot;Intégration&quot;, &quot;&lt;p&gt;Préparer le livret d&#x27;accueil, une foire aux questions, le planning de la première semaine.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Accueillir, accompagner, valider chaque information.&lt;/p&gt;&quot;], [&quot;Formation&quot;, &quot;&lt;p&gt;Créer des quiz et des fiches mémo sur les produits pour les vendeurs.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Repérer les besoins, évaluer les acquis.&lt;/p&gt;&quot;], [&quot;Communication interne&quot;, &quot;&lt;p&gt;Rédiger des annonces internes, résumer une enquête anonyme.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Arbitrer les messages sensibles, dialoguer avec les représentants du personnel.&lt;/p&gt;&quot;]]"></div>
   </div>
 </section>
 
-<section class="slide" data-title="Le cadre juridique en quatre repères" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Apports : RH et juridique" class="slide" data-title="Le cadre juridique en quatre repères" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Le cadre juridique en quatre repères</h2><div class="rows"><div class="row"><span class="k">Données personnelles</span><span>Le RGPD protège candidats et salariés. Aucun CV ni nom de salarié dans Claude sans cadre validé.</span></div><div class="row"><span class="k">Non-discrimination</span><span>Une offre ne mentionne ni âge, ni sexe, ni origine, ni situation de famille (Code du travail, article L1132-1).</span></div><div class="row"><span class="k">Recrutement et IA</span><span>Le règlement européen sur l&#x27;IA classe à haut risque les outils qui trient ou évaluent des candidats. Obligations au 2 décembre 2027.</span></div><div class="row"><span class="k">Représentants du personnel</span><span>Dès 50 salariés, le CSE est consulté avant l&#x27;introduction d&#x27;une nouvelle technologie.</span></div></div><p class="small">Repères simplifiés pour l&#x27;atelier. En entreprise, le service juridique valide.</p>
   </div>
 </section>
 
-<section class="slide" data-title="Communication commerciale : ce que dit la loi" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Apports : RH et juridique" class="slide" data-title="Communication commerciale : ce que dit la loi" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Communication commerciale : ce que dit la loi</h2><div class="rows"><div class="row"><span class="k">Influence rémunérée</span><span>La publication porte la mention « publicité » ou « collaboration commerciale » (loi du 9 juin 2023).</span></div><div class="row"><span class="k">Images</span><span>Une silhouette retouchée ou une image générée porte la mention « image retouchée » ou « image virtuelle ».</span></div><div class="row"><span class="k">Promotions</span><span>Une réduction précise ses dates et ses conditions.</span></div><div class="row"><span class="k">Allégations</span><span>« Fabriqué en France » ou « durable » se prouvent. Une promesse sans preuve peut tromper le consommateur.</span></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.3 · Fil itéré · une publication conforme" data-ch="Séance 2 · RH et juridique" data-ex="2.3" data-min="15" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="2.3 · Fil itéré · une publication conforme" data-ch="Séance 2 · RH et juridique" data-ex="2.3" data-min="15" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.3 · 15 points</p><h2>Fil itéré : une publication d&#x27;influence conforme</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez une nouvelle conversation dans votre projet marketing V2.</p><p>Envoyez les consignes une par une, dans le même fil. Notez à chaque tour ce que vous observez.</p><p class="small"><b>Livrable</b> : un fil de quatre tours et vos observations.</p></div><div class="exf"><div class="iter" data-iter="2.3"><div class="itabs" role="group" aria-label="Tours du fil"><button type="button" data-i="0" aria-pressed="true">Tour 1 · Premier jet</button><button type="button" data-i="1" aria-pressed="false">Tour 2 · Contrôle juridique</button><button type="button" data-i="2" aria-pressed="false">Tour 3 · Variantes</button><button type="button" data-i="3" aria-pressed="false">Tour 4 · Auto-évaluation</button></div><div class="istep" data-i="0"><span class="lab">Consigne du tour 1</span><pre class="doc">Rédige une publication Instagram qui annonce une collaboration rémunérée entre Le Slip Français et un créateur de contenu. Respecte les instructions du projet.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.3:0">Copier la consigne</button></div><div class="fld"><label for="f-it_2_3_o0">Ce que vous observez</label><textarea data-k="it_2_3_o0" rows="2" placeholder="La mention « collaboration commerciale » apparaît-elle ?"></textarea></div></div><div class="istep" data-i="1" hidden><span class="lab">Consigne du tour 2</span><pre class="doc">Vérifie ta publication au regard de la loi française du 9 juin 2023 sur l&#x27;influence commerciale. Liste ce qui manque, puis corrige.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.3:1">Copier la consigne</button></div><div class="fld"><label for="f-it_2_3_o1">Ce que vous observez</label><textarea data-k="it_2_3_o1" rows="2" placeholder="Ses corrections sont-elles justes ? Qu&#x27;avez-vous vérifié ?"></textarea></div></div><div class="istep" data-i="2" hidden><span class="lab">Consigne du tour 3</span><pre class="doc">Propose trois variantes plus courtes. Chacune garde la mention obligatoire et un appel à l&#x27;action différent.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.3:2">Copier la consigne</button></div><div class="fld"><label for="f-it_2_3_o2">Ce que vous observez</label><textarea data-k="it_2_3_o2" rows="2" placeholder="Laquelle garderiez-vous, et pourquoi ?"></textarea></div></div><div class="istep" data-i="3" hidden><span class="lab">Consigne du tour 4</span><pre class="doc">Évalue chaque variante avec la grille : ton, vocabulaire, valeurs, style, fiabilité, de 0 à 2. Signale les faits à vérifier.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.3:3">Copier la consigne</button></div><div class="fld"><label for="f-it_2_3_o3">Ce que vous observez</label><textarea data-k="it_2_3_o3" rows="2" placeholder="Êtes-vous d&#x27;accord avec son évaluation ?"></textarea></div></div></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_2_3_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_2_3_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_2_3_avis">Mon avis sur le résultat</label><textarea data-k="rf_2_3_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_2_3_amelio">Une amélioration possible</label><textarea data-k="rf_2_3_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-2_3"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.4 · Skill 3 · publication réseaux sociaux" data-ch="Séance 2 · RH et juridique" data-ex="2.4" data-min="12" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="2.4 · Skill 3 · publication réseaux sociaux" data-ch="Séance 2 · RH et juridique" data-ex="2.4" data-min="12" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.4 · 20 points</p><h2>Skill 3 : une publication réseaux sociaux conforme</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Complétez le nom, la description et les étapes.</p><p>Copiez le fichier Skill.md, installez le Skill, puis testez-le dans une nouvelle conversation.</p><p class="small"><b>Livrable</b> : le fichier Skill.md et le résultat du test.</p><span class="lab">Fichier Skill.md assemblé</span><pre class="doc skp" id="skp-2_4" style="max-height:20vh"></pre></div><div class="exf"><div class="fld"><label for="f-s3_nom">Nom du Skill</label><input type="text" data-k="s3_nom" placeholder="lsf-publication-reseaux"></div><div class="fld"><label for="f-s3_desc">Description : à quoi sert-il, quand l'utiliser ?</label><textarea data-k="s3_desc" rows="2" placeholder="Rédige une publication pour les réseaux sociaux du Slip Français, conforme au droit de la publicité. À utiliser pour toute publication."></textarea></div><div class="fld"><label for="f-s3_etapes">Étapes, une par ligne</label><textarea data-k="s3_etapes" rows="3" placeholder="Demander le réseau, l&#x27;objectif et le public.
@@ -1589,41 +1650,41 @@ Signaler les allégations à prouver."></textarea></div><p class="msg" id="skm-2
   </div>
 </section>
 
-<section class="slide" data-title="L&#x27;IA propose, l&#x27;humain décide" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="L&#x27;IA propose, l&#x27;humain décide" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>L&#x27;IA propose, l&#x27;humain décide</h2><div class="cols"><div class="col"><span class="no">Claude peut</span><h3>Rédiger et reformuler</h3><p class="muted">Des offres, des livrets, des quiz, des annonces internes.</p></div><div class="col"><span class="no">Claude ne fait pas</span><h3>Décider pour une personne</h3><p class="muted">Ni tri de candidats, ni évaluation d&#x27;un salarié, ni sanction.</p></div><div class="col cur"><span class="no">Vous vérifiez</span><h3>Le droit et les faits</h3><p class="muted">Les mentions, les conditions de travail, les informations supposées.</p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.5 · Projet RH et juridique V1" data-ch="Séance 2 · RH et juridique" data-ex="2.5" data-min="15" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="2.5 · Projet RH et juridique V1" data-ch="Séance 2 · RH et juridique" data-ex="2.5" data-min="15" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.5 · 10 points</p><h2>Créer le projet RH et juridique, V1</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Créez un deuxième projet dans Claude, réservé aux RH et au juridique.</p><p>Choisissez les tâches, écrivez le rôle et trois règles de prudence. Copiez les instructions assemblées.</p><p class="small"><b>Livrable</b> : un projet RH installé, avec ses instructions et ses documents.</p></div><div class="exf"><div class="fld"><label for="f-rh_projet">Nom du projet</label><input type="text" data-k="rh_projet" placeholder="RH et juridique, Le Slip Français"></div><div class="fld"><span class="lb">Tâches du projet (3 à 5)</span><label class="chk"><input type="checkbox" data-g="rh_taches" value="rédiger des offres d&#x27;emploi">Rédiger des offres d&#x27;emploi</label><label class="chk"><input type="checkbox" data-g="rh_taches" value="préparer le livret d&#x27;accueil">Préparer le livret d&#x27;accueil</label><label class="chk"><input type="checkbox" data-g="rh_taches" value="créer des quiz de formation sur les produits">Créer des quiz de formation sur les produits</label><label class="chk"><input type="checkbox" data-g="rh_taches" value="rédiger la communication interne">Rédiger la communication interne</label><label class="chk"><input type="checkbox" data-g="rh_taches" value="vérifier la conformité des contenus marketing">Vérifier la conformité des contenus marketing</label><label class="chk"><input type="checkbox" data-g="rh_taches" value="préparer des trames d&#x27;entretien">Préparer des trames d&#x27;entretien</label></div><div class="fld"><label for="f-rh_role">Rôle et contexte</label><textarea data-k="rh_role" rows="3" placeholder="Qui est Claude dans ce projet, pour quelle entreprise, avec quelles limites ?"></textarea></div><div class="fld"><label for="f-rh_regles">Trois règles de prudence</label><textarea data-k="rh_regles" rows="3" placeholder="Données personnelles, non-discrimination, décision humaine"></textarea></div><div class="fld" data-chips="rh_docs" data-min="2"><span class="lb">Documents de référence (sans données personnelles)</span><div class="chips"></div><div style="display:flex;gap:8px"><input type="text" placeholder="Nom du document, puis Entrée" aria-label="Documents de référence (sans données personnelles)"><button class="btn" type="button">Ajouter</button></div></div><div class="actions"><button class="btn" type="button" data-asm="2.5">Copier les instructions RH</button></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_2_5_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_2_5_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_2_5_avis">Mon avis sur le résultat</label><textarea data-k="rf_2_5_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_2_5_amelio">Une amélioration possible</label><textarea data-k="rf_2_5_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-2_5"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.6 · Fil itéré · l&#x27;offre d&#x27;emploi" data-ch="Séance 2 · RH et juridique" data-ex="2.6" data-min="15" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="2.6 · Fil itéré · l&#x27;offre d&#x27;emploi" data-ch="Séance 2 · RH et juridique" data-ex="2.6" data-min="15" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.6 · 15 points</p><h2>Fil itéré : l&#x27;offre d&#x27;emploi en quatre tours</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez une nouvelle conversation dans votre projet RH et juridique.</p><p>Envoyez les consignes une par une, dans le même fil. Notez à chaque tour ce que vous observez.</p><p class="small"><b>Livrable</b> : un fil de quatre tours et vos observations.</p></div><div class="exf"><div class="iter" data-iter="2.6"><div class="itabs" role="group" aria-label="Tours du fil"><button type="button" data-i="0" aria-pressed="true">Tour 1 · Premier jet</button><button type="button" data-i="1" aria-pressed="false">Tour 2 · Non-discrimination</button><button type="button" data-i="2" aria-pressed="false">Tour 3 · Version courte</button><button type="button" data-i="3" aria-pressed="false">Tour 4 · Points à vérifier</button></div><div class="istep" data-i="0"><span class="lab">Consigne du tour 1</span><pre class="doc">Rédige une offre d&#x27;emploi pour un poste de vendeur ou vendeuse en boutique au Slip Français, dans la voix de la marque employeur.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.6:0">Copier la consigne</button></div><div class="fld"><label for="f-it_2_6_o0">Ce que vous observez</label><textarea data-k="it_2_6_o0" rows="2" placeholder="L&#x27;offre donne-t-elle envie ? Ressemble-t-elle à la marque ?"></textarea></div></div><div class="istep" data-i="1" hidden><span class="lab">Consigne du tour 2</span><pre class="doc">Relis l&#x27;offre. Repère toute mention discriminatoire et toute exigence sans lien avec le poste. Corrige-les.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.6:1">Copier la consigne</button></div><div class="fld"><label for="f-it_2_6_o1">Ce que vous observez</label><textarea data-k="it_2_6_o1" rows="2" placeholder="Qu&#x27;a-t-il repéré ? A-t-il oublié quelque chose ?"></textarea></div></div><div class="istep" data-i="2" hidden><span class="lab">Consigne du tour 3</span><pre class="doc">Rédige la même offre pour un réseau social professionnel, en 80 mots au plus.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.6:2">Copier la consigne</button></div><div class="fld"><label for="f-it_2_6_o2">Ce que vous observez</label><textarea data-k="it_2_6_o2" rows="2" placeholder="Que perd-on dans la version courte ?"></textarea></div></div><div class="istep" data-i="3" hidden><span class="lab">Consigne du tour 4</span><pre class="doc">Liste les informations que tu as supposées et que le service RH doit vérifier avant publication : salaire, horaires, lieu, contrat.</pre><div class="actions"><button class="btn" type="button" data-icopy="2.6:3">Copier la consigne</button></div><div class="fld"><label for="f-it_2_6_o3">Ce que vous observez</label><textarea data-k="it_2_6_o3" rows="2" placeholder="Quelles suppositions auraient pu tromper un candidat ?"></textarea></div></div></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_2_6_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_2_6_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_2_6_avis">Mon avis sur le résultat</label><textarea data-k="rf_2_6_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_2_6_amelio">Une amélioration possible</label><textarea data-k="rf_2_6_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-2_6"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="2.7 · Contrôle de conformité de l&#x27;offre" data-ch="Séance 2 · RH et juridique" data-ex="2.7" data-min="10" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="2.7 · Contrôle de conformité de l&#x27;offre" data-ch="Séance 2 · RH et juridique" data-ex="2.7" data-min="10" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · activité 2.7 · 10 points</p><h2>Contrôler la conformité de l&#x27;offre</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Relisez l&#x27;offre finale du fil itéré.</p><p>Cochez chaque point vérifié. Donnez un verdict et les corrections.</p><p class="small"><b>Livrable</b> : une grille de conformité remplie et un verdict justifié.</p></div><div class="exf"><div class="fld"><span class="lb">Points vérifiés</span><label class="chk"><input type="checkbox" data-g="cf_checks" value="aucune mention d&#x27;âge, de sexe, d&#x27;origine ou de situation de famille">Aucune mention d&#x27;âge, de sexe, d&#x27;origine ou de situation de famille</label><label class="chk"><input type="checkbox" data-g="cf_checks" value="intitulé ouvert aux femmes et aux hommes">Intitulé ouvert aux femmes et aux hommes</label><label class="chk"><input type="checkbox" data-g="cf_checks" value="missions et conditions de travail décrites">Missions et conditions de travail décrites</label><label class="chk"><input type="checkbox" data-g="cf_checks" value="aucune donnée personnelle de candidat dans Claude">Aucune donnée personnelle de candidat dans Claude</label><label class="chk"><input type="checkbox" data-g="cf_checks" value="décision de recrutement réservée à un humain">Décision de recrutement réservée à un humain</label><label class="chk"><input type="checkbox" data-g="cf_checks" value="informations supposées vérifiées par les RH">Informations supposées vérifiées par les RH</label></div><div class="fld"><label for="f-cf_verdict">Verdict</label><select data-k="cf_verdict"><option value="">Choisir…</option><option>Publiable</option><option>À corriger</option><option>À refaire</option></select></div><div class="fld"><label for="f-cf_corr">Corrections à apporter</label><textarea data-k="cf_corr" rows="3" placeholder="Ce qu&#x27;il faut changer avant publication"></textarea></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_2_7_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_2_7_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_2_7_avis">Mon avis sur le résultat</label><textarea data-k="rf_2_7_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_2_7_amelio">Une amélioration possible</label><textarea data-k="rf_2_7_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-2_7"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="D2 · Défi niveau 2 · Pratique" data-ch="Séance 2 · RH et juridique" data-ex="D2" data-min="10" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="D2 · Défi niveau 2 · Pratique" data-ch="Séance 2 · RH et juridique" data-ex="D2" data-min="10" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 2 · défi D2 · 10 points</p><h2>Entraîneur de prompt : défi niveau 2</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez l&#x27;entraîneur de prompt. Collez le défi dans le champ « Défi ».</p><p>Rédigez votre consigne, analysez-la, corrigez-la jusqu&#x27;à cinq critères sur cinq.</p><p class="small"><b>Livrable</b> : votre consigne finale, le nombre d&#x27;essais et ce que l&#x27;analyse vous a appris.</p><div class="qrbox"><div class="qr" role="img" aria-label="Code QR vers Entraîneur de prompt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#000" d="M2 2.5h7m1 0h1m1 0h1m7 0h4m1 0h1m2 0h7m-33 1h1m5 0h1m1 0h1m3 0h1m1 0h1m2 0h2m1 0h1m1 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h3m1 0h4m3 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h4m2 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m2 0h1m1 0h3m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h1m2 0h4m2 0h1m1 0h3m-25 1h1m1 0h2m1 0h3m2 0h1m3 0h4m1 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h2m-28 1h1m7 0h1m2 0h6m1 0h1m2 0h2m1 0h2m1 0h1m-33 1h4m1 0h2m2 0h2m1 0h2m2 0h1m1 0h1m3 0h2m3 0h3m1 0h2m-31 1h1m1 0h1m2 0h2m1 0h1m1 0h1m5 0h2m3 0h1m3 0h1m1 0h1m2 0h1m-33 1h3m3 0h2m2 0h3m1 0h3m1 0h1m1 0h1m3 0h2m1 0h3m1 0h2m-32 1h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h1m4 0h1m7 0h1m3 0h1m-32 1h1m1 0h5m2 0h1m3 0h1m3 0h6m3 0h4m-29 1h2m5 0h1m1 0h1m3 0h2m2 0h1m1 0h8m1 0h2m-31 1h1m1 0h1m1 0h3m2 0h1m1 0h1m2 0h1m1 0h1m1 0h9m1 0h3m-27 1h1m2 0h4m1 0h1m1 0h2m4 0h5m1 0h1m1 0h2m1 0h2m-32 1h1m4 0h3m1 0h2m1 0h3m2 0h1m1 0h3m2 0h4m1 0h1m-31 1h1m3 0h2m3 0h1m1 0h2m4 0h1m2 0h1m1 0h3m3 0h1m2 0h1m-32 1h1m4 0h2m4 0h2m2 0h2m4 0h1m2 0h1m4 0h2m1 0h1m-33 1h1m1 0h1m2 0h1m1 0h1m2 0h2m2 0h3m1 0h3m1 0h2m2 0h1m2 0h1m2 0h1m-30 1h1m1 0h2m1 0h1m3 0h4m2 0h1m2 0h1m1 0h2m1 0h1m1 0h5m-32 1h2m2 0h1m1 0h4m1 0h1m1 0h2m2 0h1m1 0h1m3 0h2m2 0h2m1 0h2m-33 1h1m2 0h1m2 0h3m4 0h1m3 0h1m1 0h1m2 0h1m1 0h6m1 0h1m-24 1h1m1 0h1m3 0h3m2 0h1m3 0h2m3 0h2m-30 1h7m1 0h1m1 0h1m2 0h2m1 0h4m2 0h3m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m2 0h1m2 0h5m1 0h1m1 0h2m3 0h4m-32 1h1m1 0h3m1 0h1m4 0h4m1 0h3m1 0h9m1 0h1m-31 1h1m1 0h3m1 0h1m1 0h5m3 0h2m2 0h1m2 0h1m3 0h1m1 0h1m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h4m1 0h1m7 0h2m2 0h1m-31 1h1m5 0h1m4 0h3m3 0h4m3 0h5m3 0h1m-33 1h7m1 0h1m1 0h2m1 0h2m2 0h5m1 0h1m4 0h3"/></svg></div><div class="stack"><span class="lab">Outil</span><p class="mini"><b>Entraîneur de prompt</b><br>Collez le défi, rédigez, analysez, corrigez.</p><p class="mini"><a href="https://pierrickbriand.github.io/entraineur-de-prompt/" target="_blank" rel="noopener">pierrickbriand.github.io/entraineur-de-prompt</a></p></div></div></div><div class="exf"><span class="lab">Défi à coller dans l'outil</span><pre class="doc">Rédigez une consigne pour une offre d&#x27;emploi de vendeur ou vendeuse en boutique au Slip Français. Ajoutez la voix de marque employeur et deux contraintes juridiques.</pre><div class="actions"><button class="btn" type="button" data-dcopy="D2">Copier le défi</button></div><div class="fr"><div class="fld"><label for="f-df_D2_essais">Nombre d'essais</label><input type="text" inputmode="numeric" data-k="df_D2_essais" placeholder="Ex. 3"></div><div class="fld"><label for="f-df_D2_crit">Critères présents au dernier essai</label><select data-k="df_D2_crit"><option value="">Choisir…</option><option>0 sur 5</option><option>1 sur 5</option><option>2 sur 5</option><option>3 sur 5</option><option>4 sur 5</option><option>5 sur 5</option></select></div></div><div class="fld"><label for="f-df_D2_final">Votre consigne finale</label><textarea data-k="df_D2_final" rows="3"></textarea></div><div class="fld"><label for="f-df_D2_lecon">Ce que l'analyse vous a appris</label><textarea data-k="df_D2_lecon" rows="2"></textarea></div><p class="msg" id="msg-D2"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="B2 · Bonus · Skill offre d&#x27;emploi" data-ch="Séance 2 · RH et juridique" data-ex="B2" data-min="12" data-s="2">
+<section data-sec="Atelier RH et juridique" class="slide" data-title="B2 · Bonus · Skill offre d&#x27;emploi" data-ch="Séance 2 · RH et juridique" data-ex="B2" data-min="12" data-s="2">
   <div class="in">
     <header class="exh"><div><p class="kick">Bonus · 10 points</p><h2>Bonus : un Skill pour les offres d&#x27;emploi</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Complétez le nom, la description et les étapes.</p><p>Copiez le fichier Skill.md, installez le Skill, puis testez-le dans une nouvelle conversation.</p><p class="small"><b>Livrable</b> : le fichier Skill.md et le résultat du test.</p><span class="lab">Fichier Skill.md assemblé</span><pre class="doc skp" id="skp-B2" style="max-height:20vh"></pre></div><div class="exf"><div class="fld"><label for="f-b2_nom">Nom du Skill</label><input type="text" data-k="b2_nom" placeholder="lsf-offre-emploi"></div><div class="fld"><label for="f-b2_desc">Description : à quoi sert-il, quand l'utiliser ?</label><textarea data-k="b2_desc" rows="2" placeholder="Rédige une offre d&#x27;emploi du Slip Français, non discriminatoire et dans la voix de la marque employeur. À utiliser pour toute offre d&#x27;emploi."></textarea></div><div class="fld"><label for="f-b2_etapes">Étapes, une par ligne</label><textarea data-k="b2_etapes" rows="3" placeholder="Demander l&#x27;intitulé, le lieu, le contrat et le salaire.
@@ -1633,67 +1694,67 @@ Lister les informations à vérifier par les RH."></textarea></div><p class="msg
   </div>
 </section>
 
-<section class="slide" data-title="Séance 2 : ma progression" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Bilan de la séance 2" class="slide" data-title="Séance 2 : ma progression" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Séance 2 : ma progression</h2><div class="progbox" data-s="2"></div>
   </div>
 </section>
 
-<section class="slide" data-title="Retour à chaud · séance 2" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Bilan de la séance 2" class="slide" data-title="Retour à chaud · séance 2" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Retour à chaud · séance 2</h2><p class="lead">Deux minutes, en toute franchise. Votre retour rejoint votre journal de bord.</p><div class="excols"><div class="stack"><div class="fld"><label for="f-fb2_servi">Ce qui m'a servi</label><textarea data-k="fb2_servi" rows="3" placeholder="Une notion, un outil, une activité"></textarea></div><div class="fld"><label for="f-fb2_bloque">Ce qui m'a bloqué</label><textarea data-k="fb2_bloque" rows="3" placeholder="Un moment, une consigne, un outil"></textarea></div></div><div class="stack"><div class="fld"><label for="f-fb2_note">Utilité de la séance, de 1 à 5</label><select data-k="fb2_note"><option value="">Choisir…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><p class="msg" id="fbm-2"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Pour la séance 3" data-ch="Séance 2 · RH et juridique">
+<section data-sec="Bilan de la séance 2" class="slide" data-title="Pour la séance 3" data-ch="Séance 2 · RH et juridique">
   <div class="in">
     <h2>Pour la séance 3</h2><div class="rows"><div class="row n"><span class="num">1</span><span>Enregistrez votre travail (.json) et exportez votre journal en PDF.</span></div><div class="row n"><span class="num">2</span><span>Terminez les activités de la séance 2 que vous n&#x27;avez pas finies.</span></div><div class="row n"><span class="num">3</span><span>Relevez une décision de votre vie courante qui s&#x27;appuie sur un chiffre : comment l&#x27;avez-vous vérifié ?</span></div></div>
   </div>
 </section>
 
-<section class="slide dark opener" data-title="Séance 3" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Ouverture de la séance 3" class="slide dark opener" data-title="Séance 3" data-ch="Séance 3 · Finance et opérations">
   <div class="in"><h1>Séance 3 : la finance et les opérations du Slip Français</h1></div>
 </section>
 
-<section class="slide" data-title="Séance 3 : le déroulé" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Ouverture de la séance 3" class="slide" data-title="Séance 3 : le déroulé" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Séance 3 : le déroulé de trois heures</h2><div class="rows"><div class="row"><span class="k">0&nbsp;h&nbsp;00 – 0&nbsp;h&nbsp;30</span><span>RH V2 : corriger le projet à partir du contrôle de conformité.</span></div><div class="row"><span class="k">0&nbsp;h&nbsp;30 – 1&nbsp;h&nbsp;10</span><span>Apports : l&#x27;IA en finance et en opérations, les chiffres à vérifier.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;10 – 1&nbsp;h&nbsp;20</span><span>Pause.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;20 – 2&nbsp;h&nbsp;40</span><span>Atelier : projet finance V1, analyse des ventes, vérification, Skill 4, note.</span></div><div class="row"><span class="k">2&nbsp;h&nbsp;40 – 3&nbsp;h&nbsp;00</span><span>Journal de bord et progression.</span></div></div><p class="small">Vous changez d&#x27;appareil ? Importez d&#x27;abord votre sauvegarde .json.</p>
   </div>
 </section>
 
-<section class="slide" data-title="3.1 · RH V2 : corriger le projet" data-ch="Séance 3 · Finance et opérations" data-ex="3.1" data-min="15" data-s="3">
+<section data-sec="RH V2" class="slide" data-title="3.1 · RH V2 : corriger le projet" data-ch="Séance 3 · Finance et opérations" data-ex="3.1" data-min="15" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · activité 3.1 · 10 points</p><h2>RH et juridique V2 : corriger le projet</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Partez de votre contrôle de conformité (exercice 2.7) et de votre journal.</p><p>Corrigez les instructions du projet RH. Refaites l&#x27;offre d&#x27;emploi et comparez.</p><p class="small"><b>Livrable</b> : trois défauts, leurs corrections et la preuve du progrès.</p></div><div class="exf"><div class="fld"><label for="f-rh2_defauts">Trois défauts relevés en V1</label><textarea data-k="rh2_defauts" rows="3" placeholder="Un défaut par ligne"></textarea></div><div class="fld"><label for="f-rh2_corr">Les corrections apportées aux instructions</label><textarea data-k="rh2_corr" rows="3" placeholder="Ce que vous avez ajouté, retiré ou reformulé"></textarea></div><div class="fld"><label for="f-rh2_test">Le test de la V2</label><textarea data-k="rh2_test" rows="3" placeholder="Même demande : qu&#x27;est-ce qui a changé ?"></textarea></div><div class="fld"><label for="f-rh2_verdict">Nouveau verdict de conformité</label><select data-k="rh2_verdict"><option value="">Choisir…</option><option>Publiable</option><option>À corriger</option><option>À refaire</option></select></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_3_1_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_3_1_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_3_1_avis">Mon avis sur le résultat</label><textarea data-k="rf_3_1_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_3_1_amelio">Une amélioration possible</label><textarea data-k="rf_3_1_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-3_1"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Où l&#x27;IA intervient en finance" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Apports : finance et opérations" class="slide" data-title="Où l&#x27;IA intervient en finance" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Où l&#x27;IA intervient en finance et en opérations</h2><p class="small">Choisissez un domaine. L&#x27;IA propose, l&#x27;humain décide.</p><div class="gtabs" data-tabs="[[&quot;Ventes&quot;, &quot;&lt;p&gt;Résumer un tableau, calculer des évolutions, repérer des anomalies.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Vérifier les calculs, interpréter, expliquer.&lt;/p&gt;&quot;], [&quot;Stocks&quot;, &quot;&lt;p&gt;Comparer ventes et stocks, signaler les ruptures probables.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Décider des réassorts et des priorités.&lt;/p&gt;&quot;], [&quot;Achats et fournisseurs&quot;, &quot;&lt;p&gt;Préparer un e-mail fournisseur, comparer des devis.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Négocier, signer, engager l&#x27;entreprise.&lt;/p&gt;&quot;], [&quot;Pilotage&quot;, &quot;&lt;p&gt;Rédiger une note de synthèse, proposer des indicateurs clés.&lt;/p&gt;&quot;, &quot;&lt;p&gt;Fixer les objectifs, arbitrer les budgets.&lt;/p&gt;&quot;]]"></div>
   </div>
 </section>
 
-<section class="slide" data-title="Les chiffres : la zone de danger" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Apports : finance et opérations" class="slide" data-title="Les chiffres : la zone de danger" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Les chiffres : la zone de danger</h2><div class="rows"><div class="row"><span class="k">Invention</span><span>Claude peut produire un chiffre plausible et faux. Exigez la source ou le calcul.</span></div><div class="row"><span class="k">Calcul</span><span>Demandez chaque étape. Avec l&#x27;exécution de code activée, Claude peut calculer par programme.</span></div><div class="row"><span class="k">Vérification</span><span>Recalculez au moins deux chiffres à la main ou au tableur.</span></div><div class="row"><span class="k">Confidentialité</span><span>Les chiffres réels d&#x27;une entreprise sont confidentiels. Ici, le jeu de données est fictif.</span></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Le jeu de données du Slip Français" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Apports : finance et opérations" class="slide" data-title="Le jeu de données du Slip Français" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Le jeu de données du Slip Français</h2><p class="small">Scénario pédagogique : chiffres fictifs, en unités vendues par mois.</p><pre class="doc" id="dataVentes"></pre><div class="actions"><button class="btn" type="button" data-copy="ventes">Copier le jeu de données</button></div><p class="small">Collez-le au premier tour du fil itéré « analyser les ventes ».</p>
   </div>
 </section>
 
-<section class="slide" data-title="3.2 · Projet finance et opérations V1" data-ch="Séance 3 · Finance et opérations" data-ex="3.2" data-min="15" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="3.2 · Projet finance et opérations V1" data-ch="Séance 3 · Finance et opérations" data-ex="3.2" data-min="15" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · activité 3.2 · 10 points</p><h2>Créer le projet finance et opérations, V1</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Créez un troisième projet dans Claude, pour la finance et les opérations.</p><p>Choisissez les tâches, écrivez le rôle et trois règles sur les chiffres. Copiez les instructions assemblées.</p><p class="small"><b>Livrable</b> : un projet finance installé, avec ses instructions.</p></div><div class="exf"><div class="fld"><label for="f-fi_projet">Nom du projet</label><input type="text" data-k="fi_projet" placeholder="Finance et opérations, Le Slip Français"></div><div class="fld"><span class="lb">Tâches du projet (3 à 5)</span><label class="chk"><input type="checkbox" data-g="fi_taches" value="analyser les ventes mensuelles">Analyser les ventes mensuelles</label><label class="chk"><input type="checkbox" data-g="fi_taches" value="suivre les stocks et les ruptures">Suivre les stocks et les ruptures</label><label class="chk"><input type="checkbox" data-g="fi_taches" value="préparer les e-mails aux fournisseurs">Préparer les e-mails aux fournisseurs</label><label class="chk"><input type="checkbox" data-g="fi_taches" value="rédiger la note mensuelle à la direction">Rédiger la note mensuelle à la direction</label><label class="chk"><input type="checkbox" data-g="fi_taches" value="proposer des indicateurs clés">Proposer des indicateurs clés</label><label class="chk"><input type="checkbox" data-g="fi_taches" value="préparer la lettre d&#x27;information des nouveautés">Préparer la lettre d&#x27;information des nouveautés</label></div><div class="fld"><label for="f-fi_role">Rôle et contexte</label><textarea data-k="fi_role" rows="3" placeholder="Qui est Claude dans ce projet, avec quelles données, pour qui ?"></textarea></div><div class="fld"><label for="f-fi_regles">Trois règles sur les chiffres</label><textarea data-k="fi_regles" rows="3" placeholder="Montrer les calculs, citer la source, signaler les hypothèses"></textarea></div><div class="actions"><button class="btn" type="button" data-asm="3.2">Copier les instructions finance</button></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_3_2_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_3_2_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_3_2_avis">Mon avis sur le résultat</label><textarea data-k="rf_3_2_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_3_2_amelio">Une amélioration possible</label><textarea data-k="rf_3_2_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-3_2"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="3.3 · Fil itéré · analyser les ventes" data-ch="Séance 3 · Finance et opérations" data-ex="3.3" data-min="15" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="3.3 · Fil itéré · analyser les ventes" data-ch="Séance 3 · Finance et opérations" data-ex="3.3" data-min="15" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · activité 3.3 · 15 points</p><h2>Fil itéré : analyser les ventes en quatre tours</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez une nouvelle conversation dans votre projet finance et opérations.</p><p>Envoyez les consignes une par une, dans le même fil. Notez à chaque tour ce que vous observez.</p><p class="small"><b>Livrable</b> : un fil de quatre tours et vos observations.</p></div><div class="exf"><div class="iter" data-iter="3.3"><div class="itabs" role="group" aria-label="Tours du fil"><button type="button" data-i="0" aria-pressed="true">Tour 1 · Tendances</button><button type="button" data-i="1" aria-pressed="false">Tour 2 · Calculs</button><button type="button" data-i="2" aria-pressed="false">Tour 3 · Ruptures</button><button type="button" data-i="3" aria-pressed="false">Tour 4 · Actions</button></div><div class="istep" data-i="0"><span class="lab">Consigne du tour 1</span><pre class="doc">Voici les ventes fictives du Slip Français d&#x27;avril à septembre, en unités :
@@ -1702,14 +1763,14 @@ Résume les grandes tendances en cinq lignes.</pre><div class="actions"><button 
   </div>
 </section>
 
-<section class="slide" data-title="3.4 · Vérifier deux chiffres" data-ch="Séance 3 · Finance et opérations" data-ex="3.4" data-min="10" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="3.4 · Vérifier deux chiffres" data-ch="Séance 3 · Finance et opérations" data-ex="3.4" data-min="10" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · activité 3.4 · 10 points</p><h2>Vérifier deux chiffres de Claude</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Choisissez deux chiffres donnés par Claude au fil itéré.</p><p>Recalculez-les à la main ou au tableur. Comparez.</p><p class="small"><b>Livrable</b> : deux chiffres vérifiés et l&#x27;explication des écarts.</p></div><div class="exf"><div class="fld"><label for="f-vf1_claude">Chiffre 1 donné par Claude</label><input type="text" data-k="vf1_claude" placeholder="Ex. chaussettes : +38,9 %"></div><div class="fld"><label for="f-vf1_calc">Votre calcul du chiffre 1</label><input type="text" data-k="vf1_calc" placeholder="Ex. (1250 − 900) ÷ 900 = 38,9 %"></div><div class="fld"><label for="f-vf2_claude">Chiffre 2 donné par Claude</label><input type="text" data-k="vf2_claude"></div><div class="fld"><label for="f-vf2_calc">Votre calcul du chiffre 2</label><input type="text" data-k="vf2_calc"></div><div class="fld"><label for="f-vf_ecart">Écart constaté et explication</label><textarea data-k="vf_ecart" rows="3" placeholder="Aucun écart, ou d&#x27;où vient l&#x27;erreur ?"></textarea></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_3_4_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_3_4_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_3_4_avis">Mon avis sur le résultat</label><textarea data-k="rf_3_4_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_3_4_amelio">Une amélioration possible</label><textarea data-k="rf_3_4_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-3_4"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="3.5 · Skill 4 · lettre d&#x27;information" data-ch="Séance 3 · Finance et opérations" data-ex="3.5" data-min="12" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="3.5 · Skill 4 · lettre d&#x27;information" data-ch="Séance 3 · Finance et opérations" data-ex="3.5" data-min="12" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · activité 3.5 · 20 points</p><h2>Skill 4 : la lettre d&#x27;information des nouveautés</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Complétez le nom, la description et les étapes.</p><p>Copiez le fichier Skill.md, installez le Skill, puis testez-le dans une nouvelle conversation.</p><p class="small"><b>Livrable</b> : le fichier Skill.md et le résultat du test.</p><span class="lab">Fichier Skill.md assemblé</span><pre class="doc skp" id="skp-3_5" style="max-height:20vh"></pre></div><div class="exf"><div class="fld"><label for="f-s4_nom">Nom du Skill</label><input type="text" data-k="s4_nom" placeholder="lsf-lettre-information"></div><div class="fld"><label for="f-s4_desc">Description : à quoi sert-il, quand l'utiliser ?</label><textarea data-k="s4_desc" rows="2" placeholder="Rédige la lettre d&#x27;information mensuelle du Slip Français à partir des nouveautés et des stocks. À utiliser pour toute lettre d&#x27;information."></textarea></div><div class="fld"><label for="f-s4_etapes">Étapes, une par ligne</label><textarea data-k="s4_etapes" rows="3" placeholder="Demander les nouveautés du mois et l&#x27;état des stocks.
@@ -1719,21 +1780,21 @@ Signaler les chiffres et les dates à vérifier."></textarea></div><p class="msg
   </div>
 </section>
 
-<section class="slide" data-title="3.6 · Note à la direction" data-ch="Séance 3 · Finance et opérations" data-ex="3.6" data-min="15" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="3.6 · Note à la direction" data-ch="Séance 3 · Finance et opérations" data-ex="3.6" data-min="15" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · activité 3.6 · 10 points</p><h2>Rédiger une note à la direction</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Demandez à Claude une note de 150 mots pour la direction, à partir de l&#x27;analyse des ventes.</p><p>Corrigez-la : chaque chiffre est vérifié, la décision est claire.</p><p class="small"><b>Livrable</b> : une note corrigée, ses chiffres vérifiés et la décision recommandée.</p></div><div class="exf"><div class="fld"><label for="f-nt_txt">La note corrigée</label><textarea data-k="nt_txt" rows="5" placeholder="150 mots environ"></textarea></div><div class="fld"><label for="f-nt_chiffres">Les chiffres cités et leur vérification</label><textarea data-k="nt_chiffres" rows="2" placeholder="Un chiffre par ligne"></textarea></div><div class="fld"><label for="f-nt_decision">La décision que vous recommandez</label><input type="text" data-k="nt_decision"></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_3_6_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_3_6_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_3_6_avis">Mon avis sur le résultat</label><textarea data-k="rf_3_6_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_3_6_amelio">Une amélioration possible</label><textarea data-k="rf_3_6_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-3_6"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="D3 · Défi niveau 3 · Maîtrise" data-ch="Séance 3 · Finance et opérations" data-ex="D3" data-min="10" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="D3 · Défi niveau 3 · Maîtrise" data-ch="Séance 3 · Finance et opérations" data-ex="D3" data-min="10" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 3 · défi D3 · 10 points</p><h2>Entraîneur de prompt : défi niveau 3</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez l&#x27;entraîneur de prompt. Collez le défi dans le champ « Défi ».</p><p>Rédigez votre consigne, analysez-la, corrigez-la jusqu&#x27;à cinq critères sur cinq.</p><p class="small"><b>Livrable</b> : votre consigne finale, le nombre d&#x27;essais et ce que l&#x27;analyse vous a appris.</p><div class="qrbox"><div class="qr" role="img" aria-label="Code QR vers Entraîneur de prompt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#000" d="M2 2.5h7m1 0h1m1 0h1m7 0h4m1 0h1m2 0h7m-33 1h1m5 0h1m1 0h1m3 0h1m1 0h1m2 0h2m1 0h1m1 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h3m1 0h4m3 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h4m2 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m2 0h1m1 0h3m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h1m2 0h4m2 0h1m1 0h3m-25 1h1m1 0h2m1 0h3m2 0h1m3 0h4m1 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h2m-28 1h1m7 0h1m2 0h6m1 0h1m2 0h2m1 0h2m1 0h1m-33 1h4m1 0h2m2 0h2m1 0h2m2 0h1m1 0h1m3 0h2m3 0h3m1 0h2m-31 1h1m1 0h1m2 0h2m1 0h1m1 0h1m5 0h2m3 0h1m3 0h1m1 0h1m2 0h1m-33 1h3m3 0h2m2 0h3m1 0h3m1 0h1m1 0h1m3 0h2m1 0h3m1 0h2m-32 1h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h1m4 0h1m7 0h1m3 0h1m-32 1h1m1 0h5m2 0h1m3 0h1m3 0h6m3 0h4m-29 1h2m5 0h1m1 0h1m3 0h2m2 0h1m1 0h8m1 0h2m-31 1h1m1 0h1m1 0h3m2 0h1m1 0h1m2 0h1m1 0h1m1 0h9m1 0h3m-27 1h1m2 0h4m1 0h1m1 0h2m4 0h5m1 0h1m1 0h2m1 0h2m-32 1h1m4 0h3m1 0h2m1 0h3m2 0h1m1 0h3m2 0h4m1 0h1m-31 1h1m3 0h2m3 0h1m1 0h2m4 0h1m2 0h1m1 0h3m3 0h1m2 0h1m-32 1h1m4 0h2m4 0h2m2 0h2m4 0h1m2 0h1m4 0h2m1 0h1m-33 1h1m1 0h1m2 0h1m1 0h1m2 0h2m2 0h3m1 0h3m1 0h2m2 0h1m2 0h1m2 0h1m-30 1h1m1 0h2m1 0h1m3 0h4m2 0h1m2 0h1m1 0h2m1 0h1m1 0h5m-32 1h2m2 0h1m1 0h4m1 0h1m1 0h2m2 0h1m1 0h1m3 0h2m2 0h2m1 0h2m-33 1h1m2 0h1m2 0h3m4 0h1m3 0h1m1 0h1m2 0h1m1 0h6m1 0h1m-24 1h1m1 0h1m3 0h3m2 0h1m3 0h2m3 0h2m-30 1h7m1 0h1m1 0h1m2 0h2m1 0h4m2 0h3m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m2 0h1m2 0h5m1 0h1m1 0h2m3 0h4m-32 1h1m1 0h3m1 0h1m4 0h4m1 0h3m1 0h9m1 0h1m-31 1h1m1 0h3m1 0h1m1 0h5m3 0h2m2 0h1m2 0h1m3 0h1m1 0h1m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h4m1 0h1m7 0h2m2 0h1m-31 1h1m5 0h1m4 0h3m3 0h4m3 0h5m3 0h1m-33 1h7m1 0h1m1 0h2m1 0h2m2 0h5m1 0h1m4 0h3"/></svg></div><div class="stack"><span class="lab">Outil</span><p class="mini"><b>Entraîneur de prompt</b><br>Collez le défi, rédigez, analysez, corrigez.</p><p class="mini"><a href="https://pierrickbriand.github.io/entraineur-de-prompt/" target="_blank" rel="noopener">pierrickbriand.github.io/entraineur-de-prompt</a></p></div></div></div><div class="exf"><span class="lab">Défi à coller dans l'outil</span><pre class="doc">Rédigez la consigne d&#x27;ouverture d&#x27;un fil itéré : analyser les ventes fictives du Slip Français, montrer les calculs, proposer trois actions et signaler les faits à vérifier.</pre><div class="actions"><button class="btn" type="button" data-dcopy="D3">Copier le défi</button></div><div class="fr"><div class="fld"><label for="f-df_D3_essais">Nombre d'essais</label><input type="text" inputmode="numeric" data-k="df_D3_essais" placeholder="Ex. 3"></div><div class="fld"><label for="f-df_D3_crit">Critères présents au dernier essai</label><select data-k="df_D3_crit"><option value="">Choisir…</option><option>0 sur 5</option><option>1 sur 5</option><option>2 sur 5</option><option>3 sur 5</option><option>4 sur 5</option><option>5 sur 5</option></select></div></div><div class="fld"><label for="f-df_D3_final">Votre consigne finale</label><textarea data-k="df_D3_final" rows="3"></textarea></div><div class="fld"><label for="f-df_D3_lecon">Ce que l'analyse vous a appris</label><textarea data-k="df_D3_lecon" rows="2"></textarea></div><p class="msg" id="msg-D3"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="B3 · Bonus · Skill note de synthèse" data-ch="Séance 3 · Finance et opérations" data-ex="B3" data-min="12" data-s="3">
+<section data-sec="Atelier finance et opérations" class="slide" data-title="B3 · Bonus · Skill note de synthèse" data-ch="Séance 3 · Finance et opérations" data-ex="B3" data-min="12" data-s="3">
   <div class="in">
     <header class="exh"><div><p class="kick">Bonus · 10 points</p><h2>Bonus : un Skill pour la note de synthèse des ventes</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Complétez le nom, la description et les étapes.</p><p>Copiez le fichier Skill.md, installez le Skill, puis testez-le dans une nouvelle conversation.</p><p class="small"><b>Livrable</b> : le fichier Skill.md et le résultat du test.</p><span class="lab">Fichier Skill.md assemblé</span><pre class="doc skp" id="skp-B3" style="max-height:20vh"></pre></div><div class="exf"><div class="fld"><label for="f-b3_nom">Nom du Skill</label><input type="text" data-k="b3_nom" placeholder="lsf-note-ventes"></div><div class="fld"><label for="f-b3_desc">Description : à quoi sert-il, quand l'utiliser ?</label><textarea data-k="b3_desc" rows="2" placeholder="Rédige une note de synthèse des ventes du Slip Français pour la direction, calculs montrés. À utiliser pour toute note sur les ventes."></textarea></div><div class="fld"><label for="f-b3_etapes">Étapes, une par ligne</label><textarea data-k="b3_etapes" rows="3" placeholder="Demander la période et les données.
@@ -1743,74 +1804,74 @@ Lister les chiffres à vérifier."></textarea></div><p class="msg" id="skm-B3"><
   </div>
 </section>
 
-<section class="slide" data-title="Séance 3 : ma progression" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Bilan de la séance 3" class="slide" data-title="Séance 3 : ma progression" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Séance 3 : ma progression</h2><div class="progbox" data-s="3"></div>
   </div>
 </section>
 
-<section class="slide" data-title="Retour à chaud · séance 3" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Bilan de la séance 3" class="slide" data-title="Retour à chaud · séance 3" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Retour à chaud · séance 3</h2><p class="lead">Deux minutes, en toute franchise. Votre retour rejoint votre journal de bord.</p><div class="excols"><div class="stack"><div class="fld"><label for="f-fb3_servi">Ce qui m'a servi</label><textarea data-k="fb3_servi" rows="3" placeholder="Une notion, un outil, une activité"></textarea></div><div class="fld"><label for="f-fb3_bloque">Ce qui m'a bloqué</label><textarea data-k="fb3_bloque" rows="3" placeholder="Un moment, une consigne, un outil"></textarea></div></div><div class="stack"><div class="fld"><label for="f-fb3_note">Utilité de la séance, de 1 à 5</label><select data-k="fb3_note"><option value="">Choisir…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><p class="msg" id="fbm-3"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Pour la séance 4" data-ch="Séance 3 · Finance et opérations">
+<section data-sec="Bilan de la séance 3" class="slide" data-title="Pour la séance 4" data-ch="Séance 3 · Finance et opérations">
   <div class="in">
     <h2>Pour la séance 4</h2><div class="rows"><div class="row n"><span class="num">1</span><span>Enregistrez votre travail (.json) et exportez votre journal en PDF.</span></div><div class="row n"><span class="num">2</span><span>Relisez vos trois projets : notez ce que la V2 doit encore corriger.</span></div><div class="row n"><span class="num">3</span><span>Préparez une démonstration de deux minutes dans Claude pour l&#x27;oral.</span></div></div>
   </div>
 </section>
 
-<section class="slide dark opener" data-title="Séance 4" data-ch="Séance 4 · Projet intégrateur">
+<section data-sec="Ouverture de la séance 4" class="slide dark opener" data-title="Séance 4" data-ch="Séance 4 · Projet intégrateur">
   <div class="in"><h1>Séance 4 : votre recommandation à la direction</h1></div>
 </section>
 
-<section class="slide" data-title="Séance 4 : le déroulé" data-ch="Séance 4 · Projet intégrateur">
+<section data-sec="Ouverture de la séance 4" class="slide" data-title="Séance 4 : le déroulé" data-ch="Séance 4 · Projet intégrateur">
   <div class="in">
     <h2>Séance 4 : le déroulé de trois heures</h2><div class="rows"><div class="row"><span class="k">0&nbsp;h&nbsp;00 – 0&nbsp;h&nbsp;30</span><span>Finance V2 : corriger le projet à partir de vos vérifications.</span></div><div class="row"><span class="k">0&nbsp;h&nbsp;30 – 1&nbsp;h&nbsp;15</span><span>Bilan V1 → V2 et recommandation au décideur.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;15 – 1&nbsp;h&nbsp;30</span><span>Préparer l&#x27;oral avec un fil itéré, répéter.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;30 – 1&nbsp;h&nbsp;40</span><span>Pause.</span></div><div class="row"><span class="k">1&nbsp;h&nbsp;40 – 2&nbsp;h&nbsp;50</span><span>Oraux : 7 minutes d&#x27;exposé, 3 minutes de questions, évaluation par les pairs.</span></div><div class="row"><span class="k">2&nbsp;h&nbsp;50 – 3&nbsp;h&nbsp;00</span><span>Bilan du module, exports PDF du dossier et du journal.</span></div></div><p class="small">Vous changez d&#x27;appareil ? Importez d&#x27;abord votre sauvegarde .json.</p>
   </div>
 </section>
 
-<section class="slide" data-title="4.1 · Finance V2 : corriger le projet" data-ch="Séance 4 · Projet intégrateur" data-ex="4.1" data-min="15" data-s="4">
+<section data-sec="Finance V2" class="slide" data-title="4.1 · Finance V2 : corriger le projet" data-ch="Séance 4 · Projet intégrateur" data-ex="4.1" data-min="15" data-s="4">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 4 · activité 4.1 · 10 points</p><h2>Finance et opérations V2 : corriger le projet</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Partez de vos vérifications (exercice 3.4) et de votre journal.</p><p>Corrigez les instructions du projet finance. Refaites l&#x27;analyse et comparez.</p><p class="small"><b>Livrable</b> : trois défauts, leurs corrections et la preuve du progrès.</p></div><div class="exf"><div class="fld"><label for="f-fi2_defauts">Trois défauts relevés en V1</label><textarea data-k="fi2_defauts" rows="3" placeholder="Un défaut par ligne"></textarea></div><div class="fld"><label for="f-fi2_corr">Les corrections apportées aux instructions</label><textarea data-k="fi2_corr" rows="3" placeholder="Ce que vous avez ajouté, retiré ou reformulé"></textarea></div><div class="fld"><label for="f-fi2_test">Le test de la V2</label><textarea data-k="fi2_test" rows="3" placeholder="Même demande : qu&#x27;est-ce qui a changé ?"></textarea></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_4_1_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_4_1_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_4_1_avis">Mon avis sur le résultat</label><textarea data-k="rf_4_1_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_4_1_amelio">Une amélioration possible</label><textarea data-k="rf_4_1_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-4_1"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Le projet intégrateur" data-ch="Séance 4 · Projet intégrateur">
+<section data-sec="Recommandation au décideur" class="slide" data-title="Le projet intégrateur" data-ch="Séance 4 · Projet intégrateur">
   <div class="in">
     <h2>Le projet intégrateur</h2><div class="rows"><div class="row"><span class="k">Destinataire</span><span>La direction générale du Slip Français.</span></div><div class="row"><span class="k">Question</span><span>Comment déployer l&#x27;IA dans trois fonctions de l&#x27;entreprise, sans risque pour la marque ?</span></div><div class="row"><span class="k">Preuves</span><span>Vos projets V2, vos Skills, vos fils itérés, vos vérifications de chiffres.</span></div><div class="row"><span class="k">Livrables</span><span>La recommandation écrite, un oral de 10 minutes, le dossier et le journal en PDF.</span></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="4.2 · Bilan V1 → V2" data-ch="Séance 4 · Projet intégrateur" data-ex="4.2" data-min="10" data-s="4">
+<section data-sec="Recommandation au décideur" class="slide" data-title="4.2 · Bilan V1 → V2" data-ch="Séance 4 · Projet intégrateur" data-ex="4.2" data-min="10" data-s="4">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 4 · activité 4.2 · 10 points</p><h2>Bilan : de la V1 à la V2</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Pour chaque projet, résumez ce qui a changé entre la V1 et la V2.</p><p>Donnez une preuve : un extrait, une note, un chiffre.</p><p class="small"><b>Livrable</b> : trois bilans courts, chacun avec sa preuve.</p></div><div class="exf"><div class="fld"><label for="f-bv_mk">Projet marketing : ce qui a changé, et la preuve</label><textarea data-k="bv_mk" rows="3"></textarea></div><div class="fld"><label for="f-bv_rh">Projet RH et juridique : ce qui a changé, et la preuve</label><textarea data-k="bv_rh" rows="3"></textarea></div><div class="fld"><label for="f-bv_fi">Projet finance et opérations : ce qui a changé, et la preuve</label><textarea data-k="bv_fi" rows="3"></textarea></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_4_2_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_4_2_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_4_2_avis">Mon avis sur le résultat</label><textarea data-k="rf_4_2_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_4_2_amelio">Une amélioration possible</label><textarea data-k="rf_4_2_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-4_2"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="4.3 · Recommandation au décideur" data-ch="Séance 4 · Projet intégrateur" data-ex="4.3" data-min="30" data-s="4">
+<section data-sec="Recommandation au décideur" class="slide" data-title="4.3 · Recommandation au décideur" data-ch="Séance 4 · Projet intégrateur" data-ex="4.3" data-min="30" data-s="4">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 4 · activité 4.3 · 10 points</p><h2>Rédiger la recommandation au décideur</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Vous écrivez à la direction générale du Slip Français.</p><p>Remplissez les sept rubriques. Copiez la recommandation assemblée.</p><p class="small"><b>Livrable</b> : une recommandation complète, prête pour l&#x27;oral.</p></div><div class="exf"><div class="fld"><label for="f-rec_contexte">Contexte</label><textarea data-k="rec_contexte" rows="2" placeholder="L&#x27;entreprise, ses fonctions, son enjeu"></textarea></div><div class="fld"><label for="f-rec_probleme">Problème à résoudre</label><textarea data-k="rec_probleme" rows="2" placeholder="Ce qui coûte du temps ou de la qualité aujourd&#x27;hui"></textarea></div><div class="fld"><label for="f-rec_solution">Solution proposée</label><textarea data-k="rec_solution" rows="3" placeholder="Vos trois projets et vos Skills"></textarea></div><div class="fld"><label for="f-rec_gains">Gains attendus</label><textarea data-k="rec_gains" rows="2" placeholder="Temps, qualité, cohérence de la voix"></textarea></div><div class="fld"><label for="f-rec_risques">Risques et garde-fous</label><textarea data-k="rec_risques" rows="2" placeholder="Données, droit, erreurs, dépendance"></textarea></div><div class="fld"><label for="f-rec_plan">Plan de déploiement</label><textarea data-k="rec_plan" rows="2" placeholder="Qui, quand, avec quelle formation"></textarea></div><div class="fld"><label for="f-rec_indic">Indicateurs clés de suivi</label><textarea data-k="rec_indic" rows="2" placeholder="Trois indicateurs mesurables"></textarea></div><div class="actions"><button class="btn" type="button" data-asm="4.3">Copier la recommandation</button></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_4_3_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_4_3_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_4_3_avis">Mon avis sur le résultat</label><textarea data-k="rf_4_3_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_4_3_amelio">Une amélioration possible</label><textarea data-k="rf_4_3_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-4_3"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="L&#x27;oral en dix minutes" data-ch="Séance 4 · Projet intégrateur">
+<section data-sec="Préparer l&#x27;oral" class="slide" data-title="L&#x27;oral en dix minutes" data-ch="Séance 4 · Projet intégrateur">
   <div class="in">
     <h2>L&#x27;oral en dix minutes</h2><div class="rows"><div class="row"><span class="k">0 – 1 min</span><span>Le contexte et la question de la direction.</span></div><div class="row"><span class="k">1 – 3 min</span><span>La démonstration dans Claude : un projet, un Skill.</span></div><div class="row"><span class="k">3 – 5 min</span><span>Les preuves : de la V1 à la V2, les chiffres vérifiés.</span></div><div class="row"><span class="k">5 – 7 min</span><span>La recommandation, les risques, le plan de déploiement.</span></div><div class="row"><span class="k">7 – 10 min</span><span>Les questions du jury.</span></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Les critères de l&#x27;oral" data-ch="Séance 4 · Projet intégrateur">
+<section data-sec="Préparer l&#x27;oral" class="slide" data-title="Les critères de l&#x27;oral" data-ch="Séance 4 · Projet intégrateur">
   <div class="in">
     <h2>Les critères de l&#x27;oral</h2><div class="rows"><div class="row"><span class="k">Clarté</span><span>Un propos structuré, tenu en 7 minutes.</span></div><div class="row"><span class="k">Démonstration</span><span>Un projet et un Skill montrés en direct, sans hésitation.</span></div><div class="row"><span class="k">Preuves</span><span>Le passage de la V1 à la V2, appuyé sur des exemples.</span></div><div class="row"><span class="k">Risques</span><span>Données, droit, erreurs : chaque risque a son garde-fou.</span></div><div class="row"><span class="k">Recommandation</span><span>Une décision claire, un plan, des indicateurs clés.</span></div></div><p class="small">Les mêmes critères servent à l&#x27;évaluation par les pairs.</p>
   </div>
 </section>
 
-<section class="slide" data-title="4.4 · Fil itéré · préparer l&#x27;oral" data-ch="Séance 4 · Projet intégrateur" data-ex="4.4" data-min="15" data-s="4">
+<section data-sec="Préparer l&#x27;oral" class="slide" data-title="4.4 · Fil itéré · préparer l&#x27;oral" data-ch="Séance 4 · Projet intégrateur" data-ex="4.4" data-min="15" data-s="4">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 4 · activité 4.4 · 15 points</p><h2>Fil itéré : préparer l&#x27;oral avec Claude</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Ouvrez une nouvelle conversation hors projet, puis collez votre recommandation.</p><p>Envoyez les consignes une par une, dans le même fil. Notez à chaque tour ce que vous observez.</p><p class="small"><b>Livrable</b> : un fil de quatre tours et vos observations.</p></div><div class="exf"><div class="iter" data-iter="4.4"><div class="itabs" role="group" aria-label="Tours du fil"><button type="button" data-i="0" aria-pressed="true">Tour 1 · Plan</button><button type="button" data-i="1" aria-pressed="false">Tour 2 · Questions difficiles</button><button type="button" data-i="2" aria-pressed="false">Tour 3 · Réponses</button><button type="button" data-i="3" aria-pressed="false">Tour 4 · Couper</button></div><div class="istep" data-i="0"><span class="lab">Consigne du tour 1</span><pre class="doc">Voici notre recommandation à la direction du Slip Français :
@@ -1819,39 +1880,39 @@ Propose un plan d&#x27;oral de 7 minutes en quatre parties, avec la durée de ch
   </div>
 </section>
 
-<section class="slide" data-title="4.5 · Évaluation par les pairs" data-ch="Séance 4 · Projet intégrateur" data-ex="4.5" data-min="10" data-s="4">
+<section data-sec="Préparer l&#x27;oral" class="slide" data-title="4.5 · Évaluation par les pairs" data-ch="Séance 4 · Projet intégrateur" data-ex="4.5" data-min="10" data-s="4">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 4 · activité 4.5 · 10 points</p><h2>Évaluer l&#x27;oral d&#x27;un autre binôme</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Écoutez l&#x27;oral d&#x27;un autre binôme.</p><p>Notez chaque critère de 0 à 2, puis écrivez un point fort et un conseil.</p><p class="small"><b>Livrable</b> : une grille remplie, un point fort et un conseil.</p></div><div class="exf"><div class="fld"><label for="f-pe_binome">Binôme évalué</label><input type="text" data-k="pe_binome" placeholder="Prénoms"></div><div class="evr"><div class="q"><b>Clarté du propos</b></div><div class="seg" data-sc="pe_clarte" role="group" aria-label="Note : clarté du propos"><button type="button" data-v="0">0</button><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button></div></div><div class="evr"><div class="q"><b>Démonstration dans Claude</b></div><div class="seg" data-sc="pe_demo" role="group" aria-label="Note : démonstration dans claude"><button type="button" data-v="0">0</button><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button></div></div><div class="evr"><div class="q"><b>Preuves du passage V1 → V2</b></div><div class="seg" data-sc="pe_preuve" role="group" aria-label="Note : preuves du passage v1 → v2"><button type="button" data-v="0">0</button><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button></div></div><div class="evr"><div class="q"><b>Maîtrise des risques</b></div><div class="seg" data-sc="pe_risques" role="group" aria-label="Note : maîtrise des risques"><button type="button" data-v="0">0</button><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button></div></div><div class="evr"><div class="q"><b>Recommandation actionnable</b></div><div class="seg" data-sc="pe_reco" role="group" aria-label="Note : recommandation actionnable"><button type="button" data-v="0">0</button><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button></div></div><div class="fld"><label for="f-pe_fort">Un point fort</label><input type="text" data-k="pe_fort"></div><div class="fld"><label for="f-pe_conseil">Un conseil</label><input type="text" data-k="pe_conseil"></div><p class="msg" id="msg-4_5"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="4.6 · Bilan personnel du module" data-ch="Séance 4 · Projet intégrateur" data-ex="4.6" data-min="10" data-s="4">
+<section data-sec="Bilan du module" class="slide" data-title="4.6 · Bilan personnel du module" data-ch="Séance 4 · Projet intégrateur" data-ex="4.6" data-min="10" data-s="4">
   <div class="in">
     <header class="exh"><div><p class="kick">Séance 4 · activité 4.6 · 10 points</p><h2>Mon bilan du module</h2></div><div class="exr"><div class="exnav"></div><div class="timer"></div></div></header>
     <div class="excols"><div class="exl"><p>Faites le point sur ce que vous savez faire avec l&#x27;IA.</p><p>Soyez précis : un usage, une compétence, une limite.</p><p class="small"><b>Livrable</b> : trois réponses courtes et argumentées.</p></div><div class="exf"><div class="fld"><label for="f-bp_sais">Ce que je sais faire maintenant</label><textarea data-k="bp_sais" rows="2"></textarea></div><div class="fld"><label for="f-bp_travail">La compétence que je dois encore travailler</label><textarea data-k="bp_travail" rows="2"></textarea></div><div class="fld"><label for="f-bp_refus">Un usage de l&#x27;IA que je refuse, et pourquoi</label><textarea data-k="bp_refus" rows="2"></textarea></div><div class="reflex"><span class="lab">Votre analyse · 5 points</span><div class="fr"><div class="fld"><label for="f-rf_4_6_fonction">La fonction de l'entreprise concernée</label><select data-k="rf_4_6_fonction"><option value="">Choisir…</option><option>Marketing</option><option>Communication</option><option>Relation client</option><option>Ressources humaines</option><option>Juridique</option><option>Finance</option><option>Opérations</option><option>Direction</option></select></div></div><div class="fr"><div class="fld"><label for="f-rf_4_6_avis">Mon avis sur le résultat</label><textarea data-k="rf_4_6_avis" rows="2" placeholder="Utile, juste, conforme à la marque ? Pourquoi ?"></textarea></div><div class="fld"><label for="f-rf_4_6_amelio">Une amélioration possible</label><textarea data-k="rf_4_6_amelio" rows="2" placeholder="Une règle, une donnée, une étape à ajouter"></textarea></div></div></div><p class="msg" id="msg-4_6"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Retour à chaud · séance 4" data-ch="Bilan du module">
+<section data-sec="Bilan du module" class="slide" data-title="Retour à chaud · séance 4" data-ch="Bilan du module">
   <div class="in">
     <h2>Retour à chaud · séance 4</h2><p class="lead">Deux minutes, en toute franchise. Votre retour rejoint votre journal de bord.</p><div class="excols"><div class="stack"><div class="fld"><label for="f-fb4_servi">Ce qui m'a servi</label><textarea data-k="fb4_servi" rows="3" placeholder="Une notion, un outil, une activité"></textarea></div><div class="fld"><label for="f-fb4_bloque">Ce qui m'a bloqué</label><textarea data-k="fb4_bloque" rows="3" placeholder="Un moment, une consigne, un outil"></textarea></div></div><div class="stack"><div class="fld"><label for="f-fb4_note">Utilité de la séance, de 1 à 5</label><select data-k="fb4_note"><option value="">Choisir…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><p class="msg" id="fbm-4"></p></div></div>
   </div>
 </section>
 
-<section class="slide" data-title="Test de positionnement · fin" data-ch="Bilan du module">
+<section data-sec="Bilan du module" class="slide" data-title="Test de positionnement · fin" data-ch="Bilan du module">
   <div class="in">
     <h2>Test de fin : mesurez votre progression</h2><p class="lead">Les mêmes dix questions qu&#x27;en début de module. Répondez, puis comparez vos deux scores.</p><div class="pos" data-pos="1"></div>
   </div>
 </section>
 
-<section class="slide" data-title="Ma progression sur le module" data-ch="Bilan du module">
+<section data-sec="Bilan du module" class="slide" data-title="Ma progression sur le module" data-ch="Bilan du module">
   <div class="in">
     <h2>Ma progression sur le module</h2><div class="progbox" data-s="0"></div>
   </div>
 </section>
 
-<section class="slide" data-title="Le dossier final" data-ch="Bilan du module" id="final">
+<section data-sec="Bilan du module" class="slide" data-title="Le dossier final" data-ch="Bilan du module" id="final">
   <div class="in">
     <h2>Votre dossier de projet Claude</h2>
     <div class="prog"><span id="progTxt"></span><span class="bar"><i id="progBar" style="width:0%"></i></span></div>
@@ -1867,7 +1928,7 @@ Propose un plan d&#x27;oral de 7 minutes en quatre parties, avec la durée de ch
   </div>
 </section>
 
-<section class="slide dark closing" data-title="Des questions ?" data-ch="Bilan du module">
+<section data-sec="Bilan du module" class="slide dark closing" data-title="Des questions ?" data-ch="Bilan du module">
   <div class="in"><h1>Des questions ?</h1></div>
 </section>
 
@@ -1878,7 +1939,7 @@ Propose un plan d&#x27;oral de 7 minutes en quatre parties, avec la durée de ch
 </div>
 
 <nav class="nav" aria-label="Navigation du diaporama">
-  <div class="l"><span class="cnt" id="cnt"></span><span id="chn"></span></div>
+  <div class="l"><button class="lnk sidebtn" type="button" id="bSide" aria-expanded="false" aria-controls="side"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Parcours</button><span class="cnt" id="cnt"></span><span id="chn"></span></div>
   <div class="r"><button class="lnk" type="button" id="bPrev">Précédent</button><button class="lnk" type="button" id="bNext">Suivant</button><button class="lnk" type="button" id="bProj" aria-pressed="false" title="Raccourci : touche P">Projection</button><button class="lnk" type="button" id="bProg">Progression</button><button class="lnk" type="button" id="bSave">Sauvegarde</button><button class="lnk" type="button" id="bJournal">Journal</button><button class="lnk" type="button" id="bToc">Sommaire</button></div>
 </nav>
 
@@ -3023,7 +3084,7 @@ function drawProg(host){
   host.innerHTML=progHtml(+host.dataset.s||0);fix(host);
   $$('[data-goex]',host).forEach(function(b){b.addEventListener('click',function(){closeProg();var i=EXI[b.dataset.goex];if(i!=null)go(i);});});
 }
-function progNav(){var b=$('#bProg');if(!b)return;var t=prog(0);b.textContent=T('Progression · '+t.pct+' %');b.setAttribute('aria-label','Progression : '+t.pct+' %, niveau '+t.level);}
+function progNav(){var b=$('#bProg');if(!b)return;var t=prog(0);b.textContent=T('Progression · '+t.pct+' %');var sf=$('#sfProg');if(sf)sf.textContent=T('Progression · '+t.pct+' %');b.setAttribute('aria-label','Progression : '+t.pct+' %, niveau '+t.level);}
 var pPrev=null;
 function openProg(){pPrev=document.activeElement;var h=$('#progv');drawProg(h);$('#prog').classList.add('open');$('#pg-x').focus();}
 function closeProg(){var o=$('#prog');if(!o||!o.classList.contains('open'))return;o.classList.remove('open');if(pPrev&&pPrev.focus)try{pPrev.focus();}catch(e){}}
@@ -3135,7 +3196,7 @@ function refreshGen(){
       var tot=a.total?scoreTotal(a):null;
       m.textContent=T((tot!=null?'Grille : '+tot+' sur 10 · ':'')+(ok?('Activité complète : '+a.pts+' points'+(a.reflex?(rdone(id)?', analyse comprise (+5).':' · complétez l’analyse pour 5 points de plus.'):'.')):('À compléter : '+mi.slice(0,3).join(', ')+(mi.length>3?' et '+(mi.length-3)+' autre'+(mi.length>4?'s':''):'')+'.')));}
   });
-  drawLab();drawPos();drawCorr();drawRoles();drawFb();
+  drawLab();drawPos();drawCorr();drawRoles();drawFb();if(typeof drawSide==='function'&&SLMAP.length)drawSide();
   var cs=(typeof slides!=='undefined'&&slides)?slides[cur]:null;if(cs){var pb=$('.progbox',cs);if(pb)drawProg(pb);}
   if($('#prog')&&$('#prog').classList.contains('open'))drawProg($('#progv'));
   progNav();
@@ -4000,13 +4061,98 @@ function drawFb(){
 var slides=$$('.slide'),cur=0,EXI={},CPI=-1;
 slides.forEach(function(s,i){if(s.dataset.ex)EXI[s.dataset.ex]=i;if(s.id==='checkpoint')CPI=i;});
 function pad(n){return n<10?'0'+n:''+n;}
+/* ---------- Menu latéral : le parcours ---------- */
+var SEANCES={1:'Marketing, communication, relation client',2:'Ressources humaines et juridique',3:'Finance et opérations',4:'Projet intégrateur'};
+var S1SEC={"Couverture":"Ouverture","L'IA au service du marketing du Slip Français":"Le marketing du Slip Français","La voix du Slip Français":"Comprendre la voix","Le laboratoire de la voix":"Laboratoire de la voix","Un projet Claude":"Créer le projet Claude","Fichiers de contexte : la méthode":"La base de connaissances","Du projet au Skill":"Les Skills","Partage et réglages":"Réglages et méthodes","Mise en pratique":"Atelier : projet marketing V1","Ce que je retiens":"Bilan de la séance 1"};
+var SKEY='ia-b2-seen-v1',SDKEY='ia-b2-side-v1',SEEN={};
+try{SEEN=JSON.parse(localStorage.getItem(SKEY)||'{}')||{};}catch(e){SEEN={};}
+var TREE=[],SLMAP=[];
+function buildTree(){
+  var s=1,sec='',secObj=null,se=null;
+  slides.forEach(function(sl,i){
+    var t=sl.dataset.title||'',m=/^Séance ([234])$/.exec(t);
+    if(m)s=+m[1];
+    var name=sl.dataset.sec||(s===1?(S1SEC[t]||sec):'')||sl.dataset.ch||'';
+    if(s===1&&S1SEC[t])name=S1SEC[t];
+    if(!se||se.s!==s){se={s:s,secs:[]};TREE.push(se);secObj=null;}
+    if(!secObj||secObj.name!==name){secObj={name:name,items:[]};se.secs.push(secObj);}
+    sec=name;
+    secObj.items.push(i);SLMAP[i]={s:s,sec:secObj,se:se};
+  });
+}
+function itemDone(i){var sl=slides[i],id=sl.dataset.ex;if(id)return done(id);if(sl.dataset.title==='Quiz : la voix de marque')return done('Q2');if(/^Test de positionnement/.test(sl.dataset.title||''))return done(sl.dataset.title.indexOf('début')>0?'P0':'P1');return !!SEEN[i];}
+function isAct(i){var t=slides[i].dataset.title||'';return !!slides[i].dataset.ex||t==='Quiz : la voix de marque'||/^Test de positionnement/.test(t);}
+function initSide(){
+  buildTree();
+  var a=document.createElement('aside');a.id='side';a.setAttribute('aria-label','Parcours du module');
+  var h='<div class="sh"><span class="lab">Parcours du module</span><button type="button" class="lnk" id="sideX" aria-label="Fermer le menu">Fermer</button></div>'+
+    '<input type="search" id="sideQ" placeholder="Rechercher un écran" aria-label="Rechercher un écran"><nav class="stree">';
+  TREE.forEach(function(se){
+    h+='<details class="sse" data-s="'+se.s+'"><summary><span class="st"><b>Séance '+se.s+'</b><small>'+SEANCES[se.s]+'</small></span><span class="pc" data-pc="'+se.s+'"></span></summary><span class="sbar"><i data-pb="'+se.s+'"></i></span>';
+    se.secs.forEach(function(sc,k){
+      h+='<details class="ssec" data-k="'+se.s+'-'+k+'"><summary><span>'+sc.name+'</span><span class="cnt2"></span></summary><ol>';
+      sc.items.forEach(function(i){h+='<li data-i="'+i+'" class="'+(isAct(i)?'act':'th')+'"><button type="button"><span class="ic" aria-hidden="true"></span><span class="tt">'+(slides[i].dataset.title||'')+'</span></button></li>';});
+      h+='</ol></details>';
+    });
+    h+='</details>';
+  });
+  h+='</nav><div class="sfoot"><button class="btn sec" type="button" data-fw="bProg" id="sfProg">Progression</button><button class="btn sec" type="button" data-fw="bJournal">Journal</button><button class="btn sec" type="button" data-fw="bSave">Sauvegarde</button></div>';
+  a.innerHTML=h;document.body.appendChild(a);
+  var bd=document.createElement('div');bd.id='sideBd';document.body.appendChild(bd);
+  fix(a);
+  $$('#side li button').forEach(function(b){b.addEventListener('click',function(){go(+b.parentNode.dataset.i);if(window.innerWidth<1100)setSide(false);});});
+  $('#sideX').addEventListener('click',function(){setSide(false);});
+  $$('[data-fw]',a).forEach(function(b){b.addEventListener('click',function(){var t=$('#'+b.dataset.fw);if(t)t.click();});});
+  bd.addEventListener('click',function(){setSide(false);});
+  $('#bSide').addEventListener('click',function(){setSide(!document.body.classList.contains('side'));});
+  var q=$('#sideQ');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+    $$('#side li').forEach(function(li){var t=li.textContent.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');li.hidden=!!v&&t.indexOf(v)<0;});
+    $$('#side details').forEach(function(d){if(v)d.open=!!$('li:not([hidden])',d);});
+    if(!v)openCur();
+  });
+  var on=null;try{var x=localStorage.getItem(SDKEY);if(x!=null)on=x==='1';}catch(e){}
+  if(on==null)on=window.innerWidth>=1100;
+  setSide(on,true);
+}
+function setSide(on,silent){
+  document.body.classList.toggle('side',on);
+  var b=$('#bSide');if(b){b.setAttribute('aria-expanded',on?'true':'false');}
+  if(!silent)try{localStorage.setItem(SDKEY,on?'1':'0');}catch(e){}
+  if(on)setTimeout(function(){var c=$('#side li.cur');if(c&&c.scrollIntoView)c.scrollIntoView({block:'nearest'});},30);
+}
+function openCur(){
+  var m=SLMAP[cur];if(!m)return;
+  $$('#side details.sse').forEach(function(d){if(+d.dataset.s===m.s)d.open=true;});
+  var k=m.se.secs.indexOf(m.sec),dd=$('#side details.ssec[data-k="'+m.s+'-'+k+'"]');if(dd)dd.open=true;
+}
+function drawSide(){
+  if(!$('#side'))return;
+  $$('#side li').forEach(function(li){var i=+li.dataset.i;li.classList.toggle('cur',i===cur);li.classList.toggle('done',itemDone(i));});
+  TREE.forEach(function(se){
+    var p=prog(se.s),pc=$('[data-pc="'+se.s+'"]'),pb=$('[data-pb="'+se.s+'"]');
+    if(pc)pc.textContent=p.pct+' %';if(pb)pb.style.width=p.pct+'%';
+    se.secs.forEach(function(sc,k){
+      var d=$('#side details.ssec[data-k="'+se.s+'-'+k+'"] .cnt2'),n=0;sc.items.forEach(function(i){if(itemDone(i))n++;});
+      if(d)d.textContent=n+'/'+sc.items.length;
+    });
+  });
+}
+function navCount(n){
+  var m=SLMAP[n];if(!m)return pad(n+1)+' / '+slides.length;
+  return 'Séance '+m.s+' · '+m.sec.name+' · '+(m.sec.items.indexOf(n)+1)+' / '+m.sec.items.length;
+}
+
 function go(n){
   n=Math.max(0,Math.min(slides.length-1,n));
   slides.forEach(function(s,i){s.classList.toggle('on',i===n);});
   cur=n;var s=slides[n];s.scrollTop=0;
   document.body.classList.toggle('dk',s.classList.contains('dark'));
-  $('#cnt').textContent=pad(n+1)+' / '+slides.length;
-  $('#chn').textContent=T(s.dataset.ch||'');
+  SEEN[n]=1;try{localStorage.setItem(SKEY,JSON.stringify(SEEN));}catch(e){}
+  $('#cnt').textContent=T(SLMAP.length?navCount(n):(pad(n+1)+' / '+slides.length));
+  $('#chn').textContent=SLMAP.length?'':T(s.dataset.ch||'');
+  if($('#side')){openCur();var cl=$('#side li[data-i="'+n+'"]');if(cl&&document.body.classList.contains('side')&&cl.scrollIntoView)cl.scrollIntoView({block:'nearest'});}
   if(s.dataset.ex==='11'){
     ['fiche','reponse'].forEach(function(c){
       if(!filled('ev_'+c+'_txt')&&filled(c)){S['ev_'+c+'_txt']=S[c];save();var el=$('[data-k="ev_'+c+'_txt"]');if(el)el.value=S[c];}
@@ -4109,7 +4255,7 @@ initMarketing();initMyth();initUsages();initBlocs();initCompo();initTri();initCh
 initComp();initCurs();initDilue();initFiches();initNiv();initMap();initQuiz();
 injectReflex();buildEval();initChips();bind();initGen();initCopy();initExNav();initWalks();initTodo();initPdf();initTimers();initTools();initJournal();initSave();initAides();initProg();initProj();initPos();initCorr();initRoles();initTeach();
 fix(document.body);
-buildToc();initNav();syncAll();
+initSide();buildToc();initNav();syncAll();
 var start=0,m=/^#s(\d+)$/.exec(location.hash||'');
 if(m){start=(+m[1])-1;}
 else{try{var p=parseInt(localStorage.getItem(POS),10);if(p>=0)start=p;}catch(e){}}
