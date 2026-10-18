@@ -1,4 +1,4 @@
-# L'IA dans les fonctions de l'entreprise
+# Introduction à l'IA générative
 
 Cours interactif en quatre séances (Bachelor 2). Au démarrage, chaque groupe de 1 à 4 étudiants choisit sa marque fil rouge : Le Slip Français, Veja, Faguo, Loom, Jules & Jenn ou Asphalte.
 
